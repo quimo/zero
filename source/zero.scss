@@ -1,0 +1,209 @@
+/* =================
+   TABLE OF CONTENTS
+   ================= */
+
+/* 
+
+- Variables
+- Base rules
+- Utilities
+- Layout
+- Components
+
+*/
+
+/* =========
+   VARIABLES
+   ========= */
+
+:root {
+    
+    /* fonts */
+    --font-size: 1rem; // 16px
+    
+    /* paddings and margins */
+    --padding: 1rem;
+    --gap: 1rem;
+    --max-font-size: 1.6rem;
+    --min-font-size: 1.1rem;
+    
+    /* colors */
+    --brand-color: orange;
+    --bg-color: #eee;
+    --warning-color: red;
+
+    /* outline */
+    --outline: 1px dotted var(--brand-color);
+
+}
+
+header {
+    --height: 10rem;
+}
+
+footer {
+    --height: 4rem;
+}
+
+header, footer {
+    --bg-color:#ccc;
+    --fg-color: #fff;
+}
+
+section {
+    --bg-color: #ddd;
+}
+
+section:nth-child(odd) {
+    --bg-color: #eee;
+}
+
+
+/* ==========
+   BASE RULES
+   ========== */
+
+/* A Base rule is applied to an element using an element selector, a descendent selector, or a child selector, along with any pseudo-classes. It doesn’t include any class or ID selectors. It is defining the default styling for how that element should look in all occurrences on the page. */   
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-size: var(--font-size);
+    font-size: calc(2.6rem - clamp(var(--min-font-size), calc(var(--min-font-size) + 1vw), var(--max-font-size)));
+    line-height: 1.2; // 1.2 * font-size rem
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+ul, ol {
+    padding: 0 0 0 var(--padding);
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none;
+    border-bottom: var(--outline);
+}
+
+header, footer {
+    color: var(--fg-color, #fff);
+    background-color: var(--bg-color, #000);
+}
+
+/* =========
+   UTILITIES
+   ========= */
+
+.spacing > * + * {
+    margin-top: var(--padding, 20px);
+}
+
+img:not([alt]) {
+    border: 2px solid var(--warning-color);
+}
+
+/* ======
+   LAYOUT
+   ====== */
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    height: var(--height);
+}
+
+.container {
+    width: calc(100% - (2 * var(--padding)));
+    max-width: 66rem; // 1024px
+    margin: 0 auto;
+
+}
+
+section {
+    padding: var(--padding, 20px) 0;
+    background-color: var(--bg-color);
+}
+
+.row {
+    
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap);
+    justify-content: space-between;
+
+    & > * {
+        flex-basis: calc((100% / 3) - (var(--gap) * 2/3)); // three columns with 1rem gap
+    }
+
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    height: var(--height);
+}
+
+/* ==========
+   COMPONENTS
+   ========== */
+
+/* menu */
+
+.menu ul {
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    gap: var(--gap);
+
+    & > li > ul {
+        display: none;
+    }
+
+    @media (min-width: 48em) { // 768px
+
+        & > li {
+            position: relative;
+        }
+
+        & > li > ul {
+            position: absolute;
+        }
+
+        & > li:hover > ul {
+            display: block;
+        }
+
+    } // 768px
+
+}
+
+/* logo */
+
+.logo img {
+    max-width: 200px;
+}
+
