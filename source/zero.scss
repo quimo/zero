@@ -136,3 +136,10 @@ img:not([alt]) {
         flex: none;
     }
 }
+
+/* NO-SCROLL */
+
+// da applicare a <body> e <html>
+.no-scroll {
+    overflow: hidden;
+}
