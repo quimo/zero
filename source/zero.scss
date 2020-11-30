@@ -85,6 +85,10 @@ img:not([alt]) {
     border: 2px solid var(--warning-color);
 }
 
+img.maxm {
+    width: 100%;
+}
+
 /* VIDEO */ 
 
 .wrapper--video {
